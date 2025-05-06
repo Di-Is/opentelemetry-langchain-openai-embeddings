@@ -9,14 +9,8 @@ on:
 jobs:
   build-wheel:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        variant: ["gpu-cu11", "gpu-cu12"]
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: 'true'
       - name: Install uv
         uses: astral-sh/setup-uv@v6
       - name: build wheel

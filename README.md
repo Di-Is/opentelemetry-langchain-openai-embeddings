@@ -1,10 +1,10 @@
-# OpenTelemetry OpenAI Instrumentation
+# OpenTelemetry langchain_openai.embeddings Instrumentation
 
 <a href="https://pypi.org/project/opentelemetry-langchain-openai-embeddings/">
     <img src="https://badge.fury.io/py/opentelemetry-langchain-openai-embeddings.svg">
 </a>
 
-This library allows tracing OpenAI prompts and completions sent with the official [OpenAI library](https://github.com/openai/openai-python).
+This library allows tracing `langchain_openai.OpenAIEmbeddings` and `langchain_openai.AzureOpenAIEmbeddings`.
 
 ## Installation
 

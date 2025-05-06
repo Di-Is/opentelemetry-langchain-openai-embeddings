@@ -1,0 +1,43 @@
+name: Build & publish wheel
+
+on:
+  workflow_call:
+  pull_request:
+  release:
+    types: [published]
+  
+jobs:
+  build-wheel:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: ["gpu-cu11", "gpu-cu12"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: build wheel
+        run: uv build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheel
+          path: ./dist/*.whl
+
+  publish:
+    name: upload wheel to PyPI
+    needs: ["build-wheel"]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://upload.pypi.org/legacy/

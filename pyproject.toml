@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "opentelemetry-langchain-openai-embeddings"
+version = "0.1.0"
+description = "OpenTelemetry langchain_openai.embeddings instrumentation"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{ name = "Di-Is", email = "rohoxbox@gmail.com" }]
+requires-python = ">=3.9,<3.14"
+dependencies = [
+    "langchain-openai>=0.3",
+    "opentelemetry-instrumentation",
+    "opentelemetry-sdk",
+    "opentelemetry-semantic-conventions-ai",
+    "wrapt",
+]
+
+[dependency-groups]
+dev = ["mypy>=1.15.0", "opentelemetry-exporter-otlp>=1.32.1"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/opentelemetry_langchain_openai_embeddings" = "opentelemetry/instrumentation/langchain_openai_embeddings"
+
+[tool.hatch.build]
+dev-mode-dirs = [".", "src/"]

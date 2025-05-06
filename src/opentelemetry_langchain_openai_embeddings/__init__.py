@@ -21,6 +21,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 logger = logging.getLogger(__name__)
 
+PACKAGE_NAME = "opentelemetry-langchain-openai-embeddings"
 GEN_AI_OPERATION_NAME = "gen_ai.operation.name"
 
 
@@ -49,7 +50,7 @@ class LangchainOpenAIEmbeddingsInstrumentor(BaseInstrumentor):
 
     def _instrument(self, **kwargs) -> None:  # noqa: ANN003
         tracer_provider = kwargs.get("tracer_provider")
-        tracer = get_tracer(__name__, importlib.metadata.version(__name__), tracer_provider)
+        tracer = get_tracer(__name__, importlib.metadata.version(PACKAGE_NAME), tracer_provider)
         for wrapped_method in WRAPPED_METHODS:
             wrap_method = wrapped_method.get("method")
             wrap_function_wrapper(

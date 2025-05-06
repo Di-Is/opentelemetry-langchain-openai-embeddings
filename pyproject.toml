@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "opentelemetry-langchain-openai-embeddings"
-version = "0.1.1"
+name = "opentelemetry-instrumentation-langchain-openai-embeddings"
+version = "0.1.2"
 description = "OpenTelemetry langchain_openai.embeddings instrumentation"
 readme = "README.md"
 license = "Apache-2.0"

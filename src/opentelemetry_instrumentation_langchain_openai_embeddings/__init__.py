@@ -21,7 +21,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 logger = logging.getLogger(__name__)
 
-PACKAGE_NAME = "opentelemetry-langchain-openai-embeddings"
+PACKAGE_NAME = "opentelemetry-instrumentation-langchain-openai-embeddings"
 GEN_AI_OPERATION_NAME = "gen_ai.operation.name"
 
 
